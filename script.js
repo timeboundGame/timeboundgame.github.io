@@ -1,7 +1,6 @@
 // HELLO "HACKER" please play without any cheating
 
 
-//on mobile NIGGA
 class Apps{
     constructor(n, url, href="", clickF = "", moreClasses = ""){
         this.name = n;
@@ -401,9 +400,6 @@ function endGame(type){ // if you hacker can you hack it easy peasy I can too bu
     
 }
 
-function eval(a){
-    return a;
-}
 
 
 function test(){
