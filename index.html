@@ -2,12 +2,543 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.cdnfonts.com/css/seven-segment" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./gamesStyle/clubs.css">
+    <link rel="stylesheet" href="./gamesStyle/spade.css">
+    <link rel="stylesheet" href="./gamesStyle/diamond.css">
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
     <title>Timebound</title>
 </head>
 <body>
-    IN PROGRESS.
+    <div class="app full" id="MainAppGame">
+        <div id="mainscreen" class=" flex wrap">
+
+        </div>
+        <div id="timerScreen" class="blackBG appScreen hide">
+            <div class="main">
+                <h2 class="textCenter" style="margin-top: 60px">Countdown to loss <br> (Extend the timer by winning mini games).</h2>
+                <h2 id="timer">
+                    <span id="hour"></span> : <span id="minute"></span> : <span id="secound"></span>
+                </h2>
+            </div>
+        </div>
+        <div id="error" class="blackBG appScreen hide">
+            <div class="main">
+                <p style="position: absolute; top: 50%; transform: translateY(-50%);font-size: 30px;padding: 10px;" class="textCenter">You can't open the app because there's no connection or the app isn't working.</p>
+            </div>
+        </div>
+        <div id="collection" class="appScreen hide">
+            <div class="main">
+                <p class="textCenter" style="font-size: 50px;color: red;">COLLECTED</p>
+                <p id="collectedNums" style="color:red" class="textCenter"></p>
+                <div class="flex" style="justify-content: center;" id="collectionMain">
+                    <div id="heartCollect">
+
+                    </div>
+                    <div id="clubCollect">
+                        
+                    </div>
+                    <div id="diamondCollect">
+                        
+                    </div>
+                    <div id="spadesCollect">
+                        
+                    </div>
+                </div>
+                <div>
+                    <p class="textCenter" style="color: red;margin: 10px 0 ;">???</p>
+                </div>
+                <div class="hideBottom"></div>
+            </div>
+        </div>
+        <div id="game" class="appScreen hide"> <!-- hide and show-->
+            <div class="main">
+                <div id="startGamePage" class=""> <!--show and hide-->
+                    <h2 class="textCenter" style="margin-top: 20px; font-size: 50px;">GAME</h2>
+                    <button class="posCenter" id="startGameButton">REGISTRATION</button>
+                </div>
+                <div id="circleLoading" class="hide">
+                    <h2 class="textCenter" style="margin-top: 20px;">Searching games ...</h2>
+                    <img src="./images/circleGif.gif" alt="Loading" style="width: 100px;height: 100px;" class="posCenter">
+                </div>
+                <div id="gameshowlevel" class="hide">
+                    <h2 class="textCenter"  style="margin-top: 20px;">[GAME]</h2>
+                    <h3 class="textCenter" style="margin-top: 60px;">Difficulty Level</h3>
+                    <div id="gameLevel"  class="posCenter"></div>
+                </div>
+                
+                <h2  class="textCenter hide"  style="margin-top: 20px;" id="gameTop">[GAME]</h2>
+                <h2 id="win" class="textCenter hide posCenter" style="font-size: 70px;"> YOU WIN </h2>
+                <div id="loss" class="hide">
+                    <h2 class="textCenter  posCenter" style="font-size: 70px;color: white;"> GAME OVER 
+                    </h2>
+                    <div class="flex" id="blooddroping">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                
+                <h2 id="timerElm" class="hide">
+                    <span id="timerhours"></span> :  <span id="timerminute"></span> : <span id="timersecounds"></span>
+                </h2>
+                <h3 class="textCenter hide" id="questionGame">PLAY GAME</h3> <!-- quenstion game to hide -->
+
+                <button id="buttonBackToGame" class="hide">OK</button>
+                <!-- GAMES -->
+                <div class="games" id="games">
+                    <div id="clubs_6" class="hide">
+                        <div class="posCenter">
+                            <h4  style="font-size: 50px;">2+2*2 = </h4>
+                            <input type="number" style="width: 200px; height: 40px; font-size: 40px;" id="inputClubs2">
+                            <button style="width: 200px; height: 50px; margin-top: 10px" id="submitClubs2">SUBMIT</button>
+                        </div>
+                    </div>
+                    <div id="clubs_7" class="hide">
+                        
+                        <div class="textCenter">
+                            <!-- <input type="text" style="width: 200px; height: 40px; font-size: 40px;" id="inputClubs3"> -->
+                            <div class="flex" style="justify-content: center;">
+                                <div style="width: 60px; height: 60px; font-size: 60px;margin: 10px" id="clubs3Inp1">🟩</div>
+                                <div style="width: 60px; height: 60px; font-size: 60px;margin: 10px" id="clubs3Inp2">🔵</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div id="clubs_8" class="hide">
+                        
+                        <div class="textCenter">
+                            <div id="bombClubs_4" class="mAuto"></div>
+                            <div class="posCenter">
+
+                                <div class="flex">
+                                    <div class="inpClub4">
+                                        <p class="plus textCenter">+</p>
+                                        <input type="number" value="0" readonly/>
+                                        <p class="minus">-</p>
+                                    </div>
+                                    <div class="inpClub4">
+                                        <p class="plus textCenter">+</p>
+                                        <input type="number" value="0" readonly/>
+                                        <p class="minus">-</p>
+                                    </div>
+                                    <div class="inpClub4">
+                                        <p class="plus textCenter">+</p>
+                                        <input type="number" value="0" readonly/>
+                                        <p class="minus">-</p>
+                                    </div>
+                                    <div class="inpClub4">
+                                        <p class="plus textCenter">+</p>
+                                        <input type="number" value="0" readonly/>
+                                        <p class="minus">-</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <button  class="posCenter" style="top: 70%;" id="submitClubs4">SUBMIT</button>
+                        </div>
+                        
+                    </div>
+                    <div id="clubs_9" class="hide">
+                        <div class="">
+                            <p class="textCenter" style="font-size: 30px;"><span id="levelClubs_5">1</span>/10 Level</p>
+                            <div class="flex jC" style="position: relative;">
+                                <div id="startClubs_5"><span>START</span></div>
+                                <div class="red blocks"></div>
+                                <div class="green blocks"></div>
+                            </div>
+                            <div class="flex jC">
+                                <div class="blue blocks"></div>
+                                <div class="yellow blocks"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="clubs_10" class="hide">
+                        <div class="">
+                           <div>
+                                <h2 class="textCenter">+<span id="clubs_6_score">0</span></h2>
+                           </div>
+                           <div class="textCenter">
+                                <button id="clubs_6_button">+1</button>
+                           </div>
+                        </div>
+                    </div>
+                    <div id="clubs_J" class="hide">
+                        <div>
+                            <div style="margin-top: 50px;">
+                                <p class="textCenter">YOU HAVE <span id="game_clubs7attempts">10</span> attempts</p>
+                                <div style="margin-top: 10px">
+
+                                </div>
+                                <h2 class="textCenter">Between -500 and 500</h2>
+                                <div class="textCenter">
+                                    <input id="game_clubs7"  class="textCenter" type="number"/>
+                                    <div></div>
+                                    <button id="game_clubs7check">CHECK!</button>
+                                </div>
+                                <div style="margin-top: 20px;">
+                                    <p id="game_clubs7AnswerOnQuesntion" class="textCenter"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="clubs_Q" class="hide">
+                        <div>
+                            <div>
+                                <p id="clubs8quenstion" class="textCenter fs30">2 + 2 = </p>
+                                <span style="color: green">CORRECT : <span id="clubs8correct">0</span></span>
+                                <div class="" id="club8Butgroup" style="margin-top: 50px;">
+                                    <div class="flex">
+                                        <button class="club8Buts"></button>
+                                        <button  class="club8Buts"></button>
+                                    </div>
+                                    <div class="flex">
+                                        <button  class="club8Buts"></button>
+                                        <button  class="club8Buts"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="clubs_K" class="hide">
+                        <div>
+                            <section class="memory-game">
+                                <div class="memory-card" data-framework="aurelia">
+                                  <img class="front-face" src="images/clubs9IMages/img-1.png" alt="Aurelia" />
+                                  <img class="back-face" src="images/clubs9IMages/que_icon.svg" alt="JS Badge" />
+                                </div>
+                                <div class="memory-card" data-framework="aurelia">
+                                  <img class="front-face" src="images/clubs9IMages/img-1.png" alt="Aurelia" />
+                                  <img class="back-face" src="images/clubs9IMages/que_icon.svg" alt="JS Badge" />
+                                </div>
+                            
+                                <div class="memory-card" data-framework="vue">
+                                  <img class="front-face" src="images/clubs9IMages/img-2.png" alt="Vue" />
+                                  <img class="back-face" src="images/clubs9IMages/que_icon.svg" alt="JS Badge" />
+                                </div>
+                                <div class="memory-card" data-framework="vue">
+                                  <img class="front-face" src="images/clubs9IMages/img-2.png" alt="Vue" />
+                                  <img class="back-face" src="images/clubs9IMages/que_icon.svg" alt="JS Badge" />
+                                </div>
+                            
+                                <div class="memory-card" data-framework="angular">
+                                  <img class="front-face" src="images/clubs9IMages/img-3.png" alt="Angular" />
+                                  <img class="back-face" src="images/clubs9IMages/que_icon.svg" alt="JS Badge" />
+                                </div>
+                                <div class="memory-card" data-framework="angular">
+                                  <img class="front-face" src="images/clubs9IMages/img-3.png" alt="Angular" />
+                                  <img class="back-face" src="images/clubs9IMages/que_icon.svg" alt="JS Badge" />
+                                </div>
+                            
+                                <div class="memory-card" data-framework="ember">
+                                  <img class="front-face" src="images/clubs9IMages/img-4.png" alt="Ember" />
+                                  <img class="back-face" src="images/clubs9IMages/que_icon.svg" alt="JS Badge" />
+                                </div>
+                                <div class="memory-card" data-framework="ember">
+                                  <img class="front-face" src="images/clubs9IMages/img-4.png" alt="Ember" />
+                                  <img class="back-face" src="images/clubs9IMages/que_icon.svg" alt="JS Badge" />
+                                </div>
+                            
+                                <div class="memory-card" data-framework="backbone">
+                                  <img class="front-face" src="images/clubs9IMages/img-5.png" alt="Backbone" />
+                                  <img class="back-face" src="images/clubs9IMages/que_icon.svg" alt="JS Badge" />
+                                </div>
+                                <div class="memory-card" data-framework="backbone">
+                                  <img class="front-face" src="images/clubs9IMages/img-5.png" alt="Backbone" />
+                                  <img class="back-face" src="images/clubs9IMages/que_icon.svg" alt="JS Badge" />
+                                </div>
+                            
+                                <div class="memory-card" data-framework="react">
+                                  <img class="front-face" src="images/clubs9IMages/img-6.png" alt="React" />
+                                  <img class="back-face" src="images/clubs9IMages/que_icon.svg" alt="JS Badge" />
+                                </div>
+                                <div class="memory-card" data-framework="react">
+                                  <img class="front-face" src="images/clubs9IMages/img-6.png" alt="React" />
+                                  <img class="back-face" src="images/clubs9IMages/que_icon.svg" alt="JS Badge" />
+                                </div>
+                              </section>
+                        </div>
+                    </div>
+                    <div id="clubs_A" class="hide">
+                        <div>
+                            <table id="gridA">
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="spades_6" class="hide">
+                        <div>
+                            <div id="spade_6Board">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="spades_7" class="hide">
+                        <div>
+                            <p class="textCenter" id="spades_7Text"></p>
+                            <div id="spade_7Board">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="spades_8" class="hide">
+                        <div>
+                            <div id="spade_8Board">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="spades_9" class="hide">
+                        <div>
+                            <div id="spade_9Board">
+                                <div class="textCenter">
+                                    <div id="game9">
+                                        <div id="area9">
+                                        </div>
+                                        <div id="dot9" class=""></div>
+                                    </div>
+                                    <button id="stopButton9">STOP</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="spades_10" class="hide">
+                        <div>
+                            <div class="textCenter">
+                               <p id="timeDisplay"></p>
+                                <button id="stopButton">STOP</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="spades_J" class="hide">
+                        <div class="textCenter">
+                            <div id="spade_JBoard">
+                                <div id="userSpadeJ"></div>
+                                <div id="line_spade"></div>
+                                <div id="lightSpade" class="posCenter hide">
+
+                                </div>
+                            </div>
+                            <button id="spadeJbutton">CLICK</button>
+                        </div>
+                    </div>
+                    <div id="spades_Q" class="hide">
+                        <div class="textCenter">
+                           <div>
+                               <p class="textCenter" style="font-size: 30px"><span id="spadeChance">6</span> / 6 Bullets</p>
+                               <span>FIRE : <span id="fireTimeSpade">10</span>s</span>
+                           </div>
+                            <img src="./images/spadesQ/default.png" alt="" id="fireSpade"/>
+                            <div>
+                                <button id="minusBulletSpade">MINUS bullet</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="spades_K" class="hide">
+                        <div class="textCenter">
+                            <div>
+                                <div id="vaseSpadeK">
+                                    <div id="fillvaseSpadeK"></div>
+                                    <div class="centerChildOnFlex">
+                                        <img src="./images/items/gang.svg" alt="" style="width: 50px; height: 50px; filter: invert(1)"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="fillvaseButtonK">FILL</button>
+                        </div>
+                    </div>
+                    <div id="spades_A" class="hide">
+                        <div class="textCenter">
+                            <p>TIME: <span id="timeSpadeA">60</span></p>
+                            <p style="font-size: 30px">USER: <span id="spadeAuserScore">0</span> / ADMIN: <span id="spadeAadminScore">0</span></p>
+                            <button id="spadeAButton" class="posCenter">CLICK</button>
+                        </div>
+                    </div>
+
+                    <div id="diamonds_6" class="hide">
+                        <div class="textCenter">
+                            <input type="text"  id="diamond6Input"/>
+                            <div>
+                                <button id="diamond6Button">SUBMIT</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="diamonds_7" class="hide">
+                        <div class="textCenter">
+                            <p id="backgroundDiamond7" class="posCenter"></p>
+                            <input type="text" id="diamond7Input"/>
+                            <div>
+                                <button id="diamond7Button">SUBMIT</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="diamonds_8" class="hide">
+                        <div class="textCenter">
+                            <input type="text" id="diamond8Input"/>
+                            <div>
+                                <button id="diamond8Button">SUBMIT</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="diamonds_9" class="hide">
+                        <div class="textCenter">
+                            <div class="flex centerChildOnFlex">
+                                <button id="diamond9Lose">WIN</button>
+                                <button id="diamond9Win">Lose</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="diamonds_10" class="hide">
+                        <div class="textCenter">
+                            <p id="timerDiamond10" style="font-size: 40px; color: red"></p>
+                            <p id="clickDiamond10" class="bigFont">20</p>
+                            <button id="buttonDiamond10" class="posCenter">CLICK</button>
+                        </div>
+                    </div>
+                    <div id="diamonds_J" class="hide">
+                        <div class="textCenter">
+                            <button id="buttonDiamondJ" class="posCenter" style="color: white">CLICK</button>
+                        </div>
+                    </div>
+                    <div id="diamonds_Q" class="hide">
+                        <div class="textCenter">
+                            <p style="color: red">ERROR: The system is not working. Please refresh the game or contact the admin.</p>
+                            <button id="buttonContactdiamondQ">Contact</button>
+                            <button id="buttonDiamondQOk">OK</button>
+                        </div>
+                    </div>
+                    <div id="diamonds_K" class="hide">
+                        <div class="textCenter">
+                            <button id="buttonDiamondK" class="posCenter">CLICK</button>
+                        </div>
+                    </div>
+                    <div id="diamonds_A" class="hide">
+                        <div class="textCenter">
+                            <p id="diamondAPoint" class="bigFont">0</p>
+                           <div class="flex centerChildOnFlex" style="flex-wrap: wrap">
+                               <button  class="buttonDiamondA">CLICK</button>
+                               <button  class="buttonDiamondA">CLICK</button>
+                               <button  class="buttonDiamondA">CLICK</button>
+                               <button  class="buttonDiamondA">CLICK</button>
+                               <button  class="buttonDiamondA">CLICK</button>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="info" class="appScreen hide" style="color: black">
+           <div class="main">
+               <h1>🕒 Timebound – Game Info</h1>
+               <h2>🔥 How the Game Works</h2>
+               <p>In <b>Timebound</b>, your goal is to keep your remaining time from running out. You can <b>gain time by winning mini-games</b> and <b>lose time if you fail</b>. Every second counts!</p>
+               <p>✅ <b>If you win</b> 🏆 → Your time <b>increases</b>.</p>
+               <p>❌ <b>If you lose</b> → Your time <b>decreases</b>.</p>
+               <p>You must survive by playing mini-games and keeping your timer above <b>0</b>!</p>
+
+               <h2>🎮 Game Categories</h2>
+               <div class="category speed">♠️ <b>Speed & Reaction</b> - Test your reflexes and reaction speed!</div>
+               <div class="category trick">♥️ <b>Trick & Deception</b> - Beware of hidden rules and mind games!</div>
+               <div class="category logic">♣️ <b>Logic & Puzzle</b> - Use your brain to solve tricky challenges!</div>
+               <div class="category coming">♦️ <b>Coming Soon!</b> - A new challenge is on its way...</div>
+
+               <p>⚠️ <b>Remember:</b> If your timer reaches <b>0</b>, you lose the game. Can you stay in the game and beat the challenges?</p>
+           </div>
+
+
+        </div>
+        <div id="support" class="appScreen hide">
+            <div class="main textCenter" style="color: black">
+                <h1>💖 Support the Developer</h1>
+                <p>If you enjoy <b>Timebound</b> and want to see more updates, consider supporting the development!</p>
+                <div class="donation-box">
+                    <p>Your donations help improve the game with new features and content.</p>
+                    <br>
+                    <div>
+                        <div class="wallet">
+                            <img src="./images/walletTon.jpg" alt="wallet ton" />
+                            <p>UQC0ovO8GpgrmuOkepaBeT-fysyEsBna6wjB1SOjF9CtHOe2</p>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <p>Thank you for your support! 🙌</p>
+                <p style="position: absolute; bottom: 100px; width: 100%" class="textCenter">
+                    <a href="https://t.me/Hayk5545" target="_blank" style="margin: 10px">Admin Telegram</a>
+                    <a href="https://t.me/haykProject" target="_blank" style="margin: 10px">Telegram Channel</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="openAppEffect" class="posCenter">
+
+    </div>
+    <div id="backToFullScreen">
+
+    </div>
+    
+    <div id="bottomPhone">
+        <div id="circleBottomPhone"></div>
+    </div>
+    <div id="alert" class="closeAlert">
+        <span id="alertText"></span>
+        <i class="fa fa-times fa-2x exit-button exitButton" id="closeAlert"></i>
+    </div>
+    <script src="./animationBloodDroping.js"></script>
+
+    <script src="./gamesScript/clubs_6.js"></script>
+    <script src="./gamesScript/clubs_7.js"></script>
+    <script src="./gamesScript/clubs_8.js"></script>
+    <script src="./gamesScript/clubs_9.js"></script>
+    <script src="./gamesScript/clubs_10.js"></script>
+    <script src="./gamesScript/clubs_J.js"></script>
+    <script src="./gamesScript/clubs_Q.js"></script>
+    <script src="./gamesScript/clubs_K.js"></script>
+    <script src="./gamesScript/clubs_A.js"></script>
+
+    <script src="./gamesScript/spade_6.js"></script>
+    <script src="./gamesScript/spade_7.js"></script>
+    <script src="./gamesScript/spade_8.js"></script>
+    <script src="./gamesScript/spade_9.js"></script>
+    <script src="./gamesScript/spade_10.js"></script>
+    <script src="./gamesScript/spade_J.js"></script>
+    <script src="./gamesScript/spade_Q.js"></script>
+    <script src="./gamesScript/spade_K.js"></script>
+    <script src="./gamesScript/spade_A.js"></script>
+
+    <script src="./gamesScript/diamond_6.js"></script>
+    <script src="./gamesScript/diamond_7.js"></script>
+    <script src="./gamesScript/diamond_8.js"></script>
+    <script src="./gamesScript/diamond_9.js"></script>
+    <script src="./gamesScript/diamond_10.js"></script>
+    <script src="./gamesScript/diamond_J.js"></script>
+    <script src="./gamesScript/diamond_Q.js"></script>
+    <script src="./gamesScript/diamond_K.js"></script>
+    <script src="./gamesScript/diamond_A.js"></script>
+
+
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

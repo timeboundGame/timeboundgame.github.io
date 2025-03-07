@@ -1,0 +1,55 @@
+#diamonds_6, #diamonds_7{
+    margin-top: 20px;
+}
+#diamond6Input, #diamond7Input, #diamond8Input{
+    width: 200px;
+    height: 30px;
+}
+#diamond6Button, #diamond7Button, #diamond8Button{
+    margin-top: 20px;
+    width: 100px;
+    height: 50px;
+}
+#backgroundDiamond7{
+    font-size: 100px;
+    color: darkgreen;
+    animation-name: animateDiamond7;
+    animation-duration: 3s;
+    animation-delay: 3s;
+    animation-iteration-count: infinite;
+    opacity: 0;
+}
+@keyframes animateDiamond7 {
+    0%{
+        opacity: 0;
+        transform: translate(-100%, -100%);
+    }
+    2%{
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    3%{
+        opacity: 0;
+        transform: translate(0, 0);
+    }
+    100%{
+        opacity: 0;
+        transform: translate(0, 0);
+    }
+}
+
+#diamond9Lose, #diamond9Win{
+    width: 90px;
+    height: 30px;
+    margin: 10px;
+}
+#buttonDiamond10, #buttonDiamondJ, #buttonDiamondK, .buttonDiamondA{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.buttonDiamondA{
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+}

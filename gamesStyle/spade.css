@@ -1,0 +1,142 @@
+#spade_6Board, #spade_7Board, #spade_8Board, #spade_9Board{
+    position: relative;
+    height: 400px;
+}
+.spade_6Circle{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border-radius: 50%;
+}
+#spade_9Board{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#game9{
+    width: 300px;
+    height: 30px;
+    background-color: deepskyblue;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid black;
+}
+#area9{
+    width: 40px;
+    height: 100%;
+    background-color: green;
+    position: absolute;
+}
+#dot9{
+    position: absolute;
+    width: 26px; /*30px - 2 * (borderwidth)*/
+    height: 26px;
+    background-color: red;
+    border-radius: 50%;
+}
+#stopButton9{
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-top: 30px;
+}
+.animationDotGo{
+    animation-name: dotGo;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    /*animation*/
+}
+@keyframes dotGo{
+    from{
+        left: 0%;
+    }
+    to{
+        left: 95%;
+    }
+}
+#stopButton{
+    width: 100px;
+    height: 50px;
+}
+#timeDisplay{
+    font-size: 50px;
+}
+#lightSpade{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: red;
+    opacity: 0.2;
+}
+#spade_JBoard{
+    width: 95%;
+    height: 200px;
+    margin: 10px auto;
+    border: 1px solid black;
+    position: relative;
+}
+#spadeJbutton{
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+    background-color: red;
+    border-radius: 50%;
+}
+#line_spade{
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    left: 91%;
+    background-color: red;
+}
+#userSpadeJ{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: green;
+}
+#fireSpade{
+    width: 200px;
+    height: 200px;
+}
+#minusBulletSpade{
+    width: 100px;
+    height: 30px;
+    color: white;
+    background-color: red;
+}
+#vaseSpadeK{
+    display: inline-block;
+    width: 300px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid black;
+    border-radius: 0 0 50% 50%;
+}
+#fillvaseSpadeK{
+    width: 100%;
+    height: 2%;
+    transition: 0.2s;
+    background-color: red;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+#fillvaseButtonK{
+    width: 100px;
+    height: 40px;
+}
+#spadeAButton{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
