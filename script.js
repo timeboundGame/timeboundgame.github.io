@@ -1,15 +1,7 @@
 // HELLO "HACKER" please play without any cheating
 
 
-
-if(!(Telegram.WebApp.isFullscreen)){
-    try{
-        Telegram.WebApp.requestFullscreen();
-        Telegram.WebApp.exitFullscreen();
-    }catch(e){
-        document.body.innerHTML = "<h1 style='font-size: 80px'>GO TO MOBILE VERSION</h1>"; //nigga not see code
-    }
-}
+//on mobile NIGGA
 class Apps{
     constructor(n, url, href="", clickF = "", moreClasses = ""){
         this.name = n;
