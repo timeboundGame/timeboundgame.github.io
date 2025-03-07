@@ -2,13 +2,13 @@
 
 
 
-if(!(Telegram.WebApp.isFullscreen)){
-    try{
-        Telegram.WebApp.requestFullscreen()
-    }catch(e){
-        document.body.innerHTML = "<h1 style='font-size: 80px'>GO TO MOBILE VERSION</h1>"; //nigga not see code
-    }
-}
+// if(!(Telegram.WebApp.isFullscreen)){
+//     try{
+//         Telegram.WebApp.requestFullscreen()
+//     }catch(e){
+//         document.body.innerHTML = "<h1 style='font-size: 80px'>GO TO MOBILE VERSION</h1>"; //nigga not see code
+//     }
+// }
 class Apps{
     constructor(n, url, href="", clickF = "", moreClasses = ""){
         this.name = n;
@@ -35,7 +35,17 @@ const alertText = document.getElementById("alertText");
 const closeAlert = document.getElementById("closeAlert");
 const gameTop = document.getElementById("gameTop");
 const questionGame = document.getElementById("questionGame");
-
+const mainMusic = new Audio("./music/mainMusic.mp3");
+mainMusic.loop = true;
+mainMusic.volume = 0.3;
+let played = false;
+document.onclick = () => {
+    if(played){
+        return;
+    }
+    mainMusic.play();
+    played = true;
+}
 const buttonBackToGame = document.getElementById("buttonBackToGame");
 const gameLevel = document.getElementById("gameLevel");
 
@@ -316,6 +326,7 @@ function gameLogic(){
         }
        
         setTimer(time); //this minutes to object update games
+          mainMusic.pause();
        }, 10000) // 2secound + 2 secound start game 
     }
 }
@@ -393,6 +404,7 @@ function endGame(type){ // if you hacker can you hack it easy peasy I can too bu
         show(loss);
         blooding();
     }
+    mainMusic.play();
     
 }
 
