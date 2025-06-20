@@ -1,12 +1,14 @@
 // HELLO "HACKER" please play without any cheating
-document.getElementById("buttonForTest").onclick = (e) => Telegram.WebApp.shareToStory({
+document.getElementById("buttonForTest").onclick = (e) => Telegram.WebApp.shareToStory(
   media_url: "https://raw.githubusercontent.com/hamstermod/StarJack.github.io/refs/heads/main/images/loadingImage.jpg",
-  text: "HI",
-  widget_link: {
-    url: "https://t.me/StarJackOrig_bot",
-    name: "Play Star Jack",
-  }
-});
+  {
+    text: "HI",
+    widget_link: {
+      url: "https://t.me/StarJackOrig_bot",
+      name: "Play Star Jack",
+    },
+  },
+);
 
 
 class Apps{
