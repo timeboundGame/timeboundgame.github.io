@@ -1,5 +1,5 @@
 // HELLO "HACKER" please play without any cheating
-
+Telegram.WebApp.shareToStory("https://github.com/hamstermod/StarJack.github.io/blob/main/images/loadingImage.jpg")
 
 class Apps{
     constructor(n, url, href="", clickF = "", moreClasses = ""){
