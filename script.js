@@ -1,5 +1,5 @@
 // HELLO "HACKER" please play without any cheating
-setTimeout((e) => Telegram.WebApp.shareToStory("https://github.com/hamstermod/StarJack.github.io/blob/main/images/loadingImage.jpg"), 6000);
+document.getElementById("buttonForTest").onclick = (e) => Telegram.WebApp.shareToStory("https://github.com/hamstermod/StarJack.github.io/blob/main/images/loadingImage.jpg"), 6000);
 
 class Apps{
     constructor(n, url, href="", clickF = "", moreClasses = ""){
